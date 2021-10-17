@@ -1,0 +1,51 @@
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.15.0.xsd">
+    <!-- Configure the database connection here -->
+    <jdbc>
+        <driver>org.postgresql.Driver</driver>
+        <url>jdbc:postgresql://localhost:5432/jooq-test</url>
+        <user>postgres</user>
+        <password>postgres</password>
+        <schema>public</schema>
+    </jdbc>
+
+    <generator>
+        <name>org.jooq.codegen.KotlinGenerator</name>
+        <database>
+
+            <name>org.jooq.meta.postgres.PostgresDatabase</name>
+
+            <!-- All elements that are generated from your schema (A Java regular expression.
+                 Use the pipe to separate several expressions) Watch out for
+                 case-sensitivity. Depending on your database, this might be
+                 important!
+
+                 You can create case-insensitive regular expressions using this syntax: (?i:expr)
+
+                 Whitespace is ignored and comments are possible.
+                 -->
+            <includes>.*</includes>
+
+            <!-- All elements that are excluded from your schema (A Java regular expression.
+                 Use the pipe to separate several expressions). Excludes match before
+                 includes, i.e. excludes have a higher priority -->
+            <excludes>
+                flyway_schema_history
+            </excludes>
+        </database>
+
+        <!-- Generation flags: See advanced configuration properties -->
+
+        <target>
+            <!-- The destination package of your generated classes (within the
+                 destination directory)
+
+                 jOOQ may append the schema name to this package if generating multiple schemas,
+                 e.g. org.jooq.your.packagename.schema1
+                      org.jooq.your.packagename.schema2 -->
+            <packageName>com.test.jooq.generated</packageName>
+
+            <!-- The destination directory of your generated classes -->
+            <directory>/src/main/kotlin</directory>
+        </target>
+    </generator>
+</configuration>
